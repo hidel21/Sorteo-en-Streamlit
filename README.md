@@ -1,15 +1,3 @@
-Perfecto. Aquí tienes un `README.md` **profesional, claro y completo**, ideal para documentar tu proyecto de **Rifa Digital**. Incluye:
-
-- ✅ Descripción del proyecto  
-- 🛠️ Instrucciones de instalación y uso  
-- 🎯 Detalles de funcionalidad  
-- 🧑‍💻 Información del autor
-
----
-
-## 📄 `README.md`
-
-```markdown
 # 🎁 Rifa Digital - Organización Bera
 
 Aplicación interactiva desarrollada en **Python y Streamlit** para realizar rifas dinámicas, justas y transparentes en eventos corporativos de la Organización Bera.
@@ -132,11 +120,9 @@ RifaDigital/
 **Hidelberg Martínez**  
 Desarrollador de sistemas y programador Odoo  
 📍 Venezuela – Territorio Bera  
-✉️ Contacto: (agrega tu email o red si deseas)  
+✉️ Contacto: hidelmartinez21@gmail.com
 
 ---
 
 **¡Hecha para brillar en eventos reales, con emoción y transparencia!**  
 🇻🇪 *Venezuela Territorio Bera*
-```# Sistema-de-sorteo
-# Sorteo-en-Streamlit
