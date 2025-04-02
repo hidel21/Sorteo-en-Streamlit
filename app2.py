@@ -78,11 +78,11 @@ def mostrar_logo():
     col = st.container()
     with col:
         if imagen:
-            st.image(imagen, use_column_width=True)
+            st.image(imagen, use_container_width=True)
         else:
             ruta_logo = "assets/logo_bera.png"
             if os.path.exists(ruta_logo):
-                st.image(ruta_logo, use_column_width=True)
+                st.image(ruta_logo, use_container_width=True)
         st.markdown("""
             <div style="
                 text-align: center;
