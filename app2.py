@@ -5,9 +5,9 @@ import os
 import time
 import random
 
-st.set_page_config(page_title="Rifa Bera", page_icon="🎁", layout="centered")
+st.set_page_config(page_title="Rifa Bera", page_icon="🏱", layout="centered")
 
-# Estilos
+# Estilos personalizados armonizados
 st.markdown("""
     <style>
         html, body, [class*="css"]  {
@@ -15,30 +15,40 @@ st.markdown("""
             background-color: #0f1117;
         }
         h1, h2, h3 {
-            color: #FFCC00;
+            color: #f0dd17;
+        }
+        .section-title {
+            color: #3ebfe7;
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 30px;
         }
         .slogan {
             text-align: center;
-            color: #ffaa00;
+            color: #f0dd17;
             font-size: 20px;
             margin-top: -10px;
             font-weight: bold;
             letter-spacing: 1px;
         }
-        .section-title {
-            color: #00BFFF;
+        .stButton > button {
+            background-color: #f0dd17;
+            color: #0f1117;
             font-weight: 600;
-            font-size: 18px;
-            margin-top: 30px;
+            border-radius: 8px;
+            border: none;
+            padding: 8px 16px;
+        }
+        .stButton > button:hover {
+            background-color: #3ebfe7;
+            color: #0f1117;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Estado inicial
 if 'set_actual' not in st.session_state:
     st.session_state.set_actual = 1
 
-# Animación visual del sorteo
 def mostrar_animacion_sorteo(df_filtrado, localidad):
     candidatos = df_filtrado['Nombre'].dropna().tolist()
     if not candidatos:
@@ -57,31 +67,27 @@ def mostrar_animacion_sorteo(df_filtrado, localidad):
                         padding: 20px;
                         border-radius: 10px;
                         box-shadow: 0 0 10px #00BFFF;">
-                🎰 Seleccionando...<br><span style="color: #ffaa00;">{seleccionado}</span>
+                🗓️ Seleccionando...<br><span style='color:#ffaa00;'>{seleccionado}</span>
             </div>
         """, unsafe_allow_html=True)
         time.sleep(0.1)
-
     texto_ganador.empty()
 
-# Logo
 def mostrar_logo():
     imagen = st.file_uploader("📸 Sube el banner del evento (PNG, JPG)", type=["png", "jpg", "jpeg"])
-    
     col = st.container()
     with col:
         if imagen:
             st.image(imagen, use_column_width=True)
         else:
-            ruta_logo = "assets/logo.png"
+            ruta_logo = "assets/logo_bera.png"
             if os.path.exists(ruta_logo):
                 st.image(ruta_logo, use_column_width=True)
-        
         st.markdown("""
             <div style="
                 text-align: center;
                 font-size: 20px;
-                color: #ffaa00;
+                color: #f0dd17;
                 font-weight: bold;
                 margin-top: -10px;
                 letter-spacing: 2px;">
@@ -89,8 +95,6 @@ def mostrar_logo():
             </div>
         """, unsafe_allow_html=True)
 
-
-# Cargar Excel
 def cargar_excel_desde_interfaz():
     uploaded_file = st.file_uploader("📁 Sube el archivo Excel con los empleados", type=["xlsx"], key="uploaded_file")
     if uploaded_file:
@@ -106,11 +110,9 @@ def cargar_excel_desde_interfaz():
             return None
     return None
 
-# Interfaz
 mostrar_logo()
-st.markdown("<h1 style='text-align: center;'>🎁 Rifa Digital de la Organización</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>🏱 Rifa Digital de la Organización</h1>", unsafe_allow_html=True)
 
-# Visual SET actual
 st.markdown(f"""
     <div style="
         text-align: center;
@@ -138,20 +140,20 @@ if df is not None:
 
     st.markdown("<div class='section-title'>🎯 Configuración del sorteo</div>", unsafe_allow_html=True)
 
-    localidades_disponibles = ["🏁 Todas las localidades"] + sorted(df['Localidad'].dropna().unique())
+    localidades_disponibles = ["🏑 Todas las localidades"] + sorted(df['Localidad'].dropna().unique())
     localidad_seleccionada = st.selectbox("Selecciona la localidad para el sorteo", options=localidades_disponibles)
 
     premio = st.text_input("🏆 Premio (opcional)")
 
     if st.button("🎲 Realizar sorteo"):
-        if localidad_seleccionada == "🏁 Todas las localidades":
+        if localidad_seleccionada == "🏑 Todas las localidades":
             df_filtrado = df
         else:
             df_filtrado = df[df['Localidad'].str.upper() == localidad_seleccionada.upper()]
 
         mostrar_animacion_sorteo(df_filtrado, localidad_seleccionada)
 
-        if localidad_seleccionada == "🏁 Todas las localidades":
+        if localidad_seleccionada == "🏑 Todas las localidades":
             ganador = rifa.sortear_global(premio)
         else:
             ganador = rifa.sortear_por_nombre_localidad(localidad_seleccionada, premio)
@@ -170,7 +172,7 @@ if df is not None:
                     font-weight: bold;
                     color: #FFCC00;">
                     🎉 <u>GANADOR</u><br><br>
-                    🧍 {ganador['Nombre']}<br>
+                    🧝 {ganador['Nombre']}<br>
                     📍 Localidad: {ganador['Localidad']}<br>
                     🏆 Premio: {premio or 'Sin premio'}
                 </div>
