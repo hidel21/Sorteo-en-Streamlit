@@ -62,6 +62,8 @@ def mostrar_animacion_sorteo(df_filtrado, localidad):
         """, unsafe_allow_html=True)
         time.sleep(0.1)
 
+    texto_ganador.empty()
+
 # Logo
 def mostrar_logo():
     imagen = st.file_uploader("📸 Sube el banner del evento (PNG, JPG)", type=["png", "jpg", "jpeg"])
