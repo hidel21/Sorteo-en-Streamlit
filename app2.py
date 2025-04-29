@@ -91,7 +91,7 @@ def mostrar_logo():
                 font-weight: bold;
                 margin-top: -10px;
                 letter-spacing: 2px;">
-                🇻🇪 VENEZUELA TERRITORIO BERA
+                VENEZUELA TERRITORIO BERA
             </div>
         """, unsafe_allow_html=True)
 
